@@ -15,7 +15,7 @@ jobs:
     name: Build using xcodebuild command
     runs-on: macos-latest
     env:
-      scheme: Feather
+      scheme: LiveContainer
       archive_path: archive
     outputs:
       scheme: ${{ env.scheme }}
@@ -62,6 +62,8 @@ jobs:
             CODE_SIGNING_REQUIRED=NO \
             CODE_SIGN_IDENTITY="" \
             CODE_SIGN_ENTITLEMENTS="" \
+            -skipPackagePluginValidation \
+            -skipMacroValidation \
             | xcpretty && exit ${PIPESTATUS[0]}
 
       - name: Tar Build Artifact
